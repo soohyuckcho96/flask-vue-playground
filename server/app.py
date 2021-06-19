@@ -33,6 +33,19 @@ BOOKS = [
     }
 ]
 
+OPTIONS = [
+    { 'name': 'Ant',        'id': 'ant' },
+    { 'name': 'Bat',        'id': 'bat' },
+    { 'name': 'Cat',        'id': 'cat' },
+    { 'name': 'Dog',        'id': 'dog' },
+    { 'name': 'Elephant',   'id': 'elephant' },
+    { 'name': 'Girafe',     'id': 'girafe' },
+    { 'name': 'Snake',      'id': 'snake' },
+    { 'name': 'Spider',     'id': 'spider' },
+    { 'name': 'Unicorn',    'id': 'unicorn' },
+    { 'name': 'Zebra',      'id': 'zebra' }
+]
+
 # sanity check route
 @app.route('/ping', methods=['GET'])
 def ping_pong():
@@ -78,6 +91,12 @@ def remove_book(book_id):
             BOOKS.remove(book)
             return True
     return False
+
+@app.route('/dropdown', methods=['GET'])
+def dropdown():
+    response_object = {'status': 'success'}
+    response_object['options'] = OPTIONS
+    return jsonify(response_object)
 
 if __name__ == '__main__':
     app.run()
